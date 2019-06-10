@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (33fec40, 2019-01-16)"
+   sodipodi:docname="pothole_splashscreen.svg"
+   inkscape:export-filename="/home/thestopsign/Dropbox/School/Semester 5/Interactive Data Visualization/pothole_splashscreen.png"
+   inkscape:export-xdpi="100"
+   inkscape:export-ydpi="100">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="566.82318"
+     inkscape:cy="346.21552"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1029"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Splash"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-87)">
+    <rect
+       style="fill:#008080;fill-opacity:1;stroke:none;stroke-width:0.49926811;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect817"
+       width="299.4903"
+       height="212.99619"
+       x="0.023623513"
+       y="87.034233" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:22.05052185px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.55126303"
+       x="24.534245"
+       y="189.87215"
+       id="text821"><tspan
+         sodipodi:role="line"
+         id="tspan819"
+         x="24.534245"
+         y="189.87215"
+         style="text-align:start;text-anchor:start;fill:#ffffff;stroke-width:0.55126303">Data</tspan><tspan
+         sodipodi:role="line"
+         x="24.534245"
+         y="217.4353"
+         style="fill:#ffffff;stroke-width:0.55126303"
+         id="tspan2165">Visualizer</tspan></text>
+    <text
+       id="text825"
+       y="189.25223"
+       x="190.1644"
+       style="font-style:normal;font-weight:normal;font-size:22.05052185px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.55126303"
+       xml:space="preserve"><tspan
+         style="fill:#ffffff;stroke-width:0.55126303"
+         y="189.25223"
+         x="190.1644"
+         id="tspan823"
+         sodipodi:role="line">Route</tspan><tspan
+         style="fill:#ffffff;stroke-width:0.55126303"
+         y="216.81538"
+         x="190.1644"
+         sodipodi:role="line"
+         id="tspan2167">Planner</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.48936501;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect827"
+       width="2.2450638"
+       height="212.90691"
+       x="152.70636"
+       y="87.460693" />
+    <rect
+       y="86.707108"
+       x="94.371925"
+       height="50.667084"
+       width="119.26036"
+       id="rect2169"
+       style="fill:#008080;fill-opacity:1;stroke:#ffffff;stroke-width:1.29383719;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.0472517px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25118127;stroke-opacity:1"
+       x="153.9422"
+       y="100.01805"
+       id="text2173"><tspan
+         sodipodi:role="line"
+         id="tspan2171"
+         x="153.9422"
+         y="100.01805"
+         style="font-size:4.01890039px;line-height:1.25;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25118127;stroke-opacity:1">Welcome! This application has two modes:</tspan><tspan
+         sodipodi:role="line"
+         x="153.9422"
+         y="112.57712"
+         style="font-size:4.01890039px;line-height:1.25;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25118127;stroke-opacity:1"
+         id="tspan2175">-Show Troy pothole data in interesting ways (left)</tspan><tspan
+         sodipodi:role="line"
+         x="153.9422"
+         y="125.13618"
+         style="font-size:4.01890039px;line-height:1.25;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.25118127;stroke-opacity:1"
+         id="tspan2177">-Plan a route/commute to avoid most potholes (right)</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Data"
+     style="display:inline" />
+</svg>
