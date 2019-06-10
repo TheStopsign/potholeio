@@ -386,9 +386,9 @@ public class Visualizer {
 	    			String contents = new String(""+((char)(65+j))+(i+1));
 	    			regionLbls[i][j].setText(contents);
 	    			regionLbls[i][j].setHorizontalAlignment(0);
-	    			regionLbls[i][j].setForeground(Color.white);
+	    			regionLbls[i][j].setForeground(Color.black);
 	    			regionLbls[i][j].setFont(new Font("Dialog",0,24));
-	    			this.add(regionLbls[i][j]);
+//	    			this.add(regionLbls[i][j]);
 	    		}
 	        }
 		}
