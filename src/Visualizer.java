@@ -588,7 +588,7 @@ public class Visualizer {
 	        }
 	        if(chartTypes.get(2).isSelected()) {
 	        	
-	        	Rectangle graphRegion = new Rectangle(startX+100, startY+100,1500,750);
+	        	Rectangle graphRegion = new Rectangle(startX+75, startY+200,1400,700);
 	        	int barWidth = (int)graphRegion.getWidth()/15;
         		double[] barContents = new double[15];
         		
@@ -597,14 +597,158 @@ public class Visualizer {
 	        	g2.drawLine((int)(graphRegion.getX()),(int)(graphRegion.getY()),
 	        			(int)(graphRegion.getX()),(int)(graphRegion.getY()+graphRegion.getHeight()));
 	        	g2.drawLine((int)(graphRegion.getX()),(int)(graphRegion.getY()+graphRegion.getHeight()),
-        				(int)(graphRegion.getX()+graphRegion.getWidth()),(int)(graphRegion.getY()+graphRegion.getHeight()));
+        				(int)(graphRegion.getX()+(barWidth*15)),(int)(graphRegion.getY()+graphRegion.getHeight()));
 	        	
-	        	if(dataTypes.get(0).isSelected() && dataTypes.get(0).isSelected()) {
-	        		
+	        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
+	        		for(Hole h : holes) {
+	        			switch(h.region) {
+	        			case "A1":
+	        				barContents[0]+=h.getDiameter();
+	        				break;
+	        			case "A2":
+	        				barContents[1]+=h.getDiameter();
+	        				break;
+	        			case "A3":
+	        				barContents[2]+=h.getDiameter();
+	        				break;
+	        			case "A4":
+	        				barContents[3]+=h.getDiameter();
+	        				break;
+	        			case "A5":
+	        				barContents[4]+=h.getDiameter();
+	        				break;
+	        			case "B1":
+	        				barContents[5]+=h.getDiameter();
+	        				break;
+	        			case "B2":
+	        				barContents[6]+=h.getDiameter();
+	        				break;
+	        			case "B3":
+	        				barContents[7]+=h.getDiameter();
+	        				break;
+	        			case "B4":
+	        				barContents[8]+=h.getDiameter();
+	        				break;
+	        			case "B5":
+	        				barContents[9]+=h.getDiameter();
+	        				break;
+	        			case "C1":
+	        				barContents[10]+=h.getDiameter();
+	        				break;
+	        			case "C2":
+	        				barContents[11]+=h.getDiameter();
+	        				break;
+	        			case "C3":
+	        				barContents[12]+=h.getDiameter();
+	        				break;
+	        			case "C4":
+	        				barContents[13]+=h.getDiameter();
+	        				break;
+	        			case "C5":
+	        				barContents[14]+=h.getDiameter();
+	        				break;
+	        			}
+	        		}
 	        	}else if(dataTypes.get(0).isSelected()) {
-	        		
+	        		for(Hole h : holes) {
+	        			switch(h.region) {
+	        			case "A1":
+	        				barContents[0]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "A2":
+	        				barContents[1]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "A3":
+	        				barContents[2]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "A4":
+	        				barContents[3]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "A5":
+	        				barContents[4]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "B1":
+	        				barContents[5]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "B2":
+	        				barContents[6]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "B3":
+	        				barContents[7]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "B4":
+	        				barContents[8]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "B5":
+	        				barContents[9]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "C1":
+	        				barContents[10]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "C2":
+	        				barContents[11]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "C3":
+	        				barContents[12]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "C4":
+	        				barContents[13]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			case "C5":
+	        				barContents[14]+=h.getDiameter()*h.getDepth();
+	        				break;
+	        			}
+	        		}
 	        	}else if(dataTypes.get(1).isSelected()) {
-	        		
+	        		for(Hole h : holes) {
+	        			switch(h.region) {
+	        			case "A1":
+	        				barContents[0]+=h.getDepth();
+	        				break;
+	        			case "A2":
+	        				barContents[1]+=h.getDepth();
+	        				break;
+	        			case "A3":
+	        				barContents[2]+=h.getDepth();
+	        				break;
+	        			case "A4":
+	        				barContents[3]+=h.getDepth();
+	        				break;
+	        			case "A5":
+	        				barContents[4]+=h.getDepth();
+	        				break;
+	        			case "B1":
+	        				barContents[5]+=h.getDepth();
+	        				break;
+	        			case "B2":
+	        				barContents[6]+=h.getDepth();
+	        				break;
+	        			case "B3":
+	        				barContents[7]+=h.getDepth();
+	        				break;
+	        			case "B4":
+	        				barContents[8]+=h.getDepth();
+	        				break;
+	        			case "B5":
+	        				barContents[9]+=h.getDepth();
+	        				break;
+	        			case "C1":
+	        				barContents[10]+=h.getDepth();
+	        				break;
+	        			case "C2":
+	        				barContents[11]+=h.getDepth();
+	        				break;
+	        			case "C3":
+	        				barContents[12]+=h.getDepth();
+	        				break;
+	        			case "C4":
+	        				barContents[13]+=h.getDepth();
+	        				break;
+	        			case "C5":
+	        				barContents[14]+=h.getDepth();
+	        				break;
+	        			}
+	        		}
 	        	}else{
 	        		for(Hole h : holes) {
 	        			switch(h.region) {
@@ -655,13 +799,14 @@ public class Visualizer {
 	        				break;
 	        			}
 	        		}
-	        		double maxN = getMaxValue(barContents);
-	        		for(int n=0;n<barContents.length;n++) {
-	        			int h = (int)(graphRegion.getHeight()*(barContents[n]/maxN));
-	        			g2.setColor(Color.white);
-	        			g2.fillRect((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
-	        		}
 	        	}
+	        	double maxN = getMaxValue(barContents);
+        		for(int n=0;n<barContents.length;n++) {
+        			int h = (int)(graphRegion.getHeight()*(barContents[n]/maxN));
+        			g2.setColor(Color.red);
+        			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
+        			
+        		}
 	        	
 	        }
 	        repaint();
