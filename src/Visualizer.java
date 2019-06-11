@@ -352,6 +352,11 @@ public class Visualizer {
     	int startX = 145,startY = 10;
     	double regions[][] = new double[5][4];
         JLabel regionLbls[][] = new JLabel[5][4];
+        JLabel xMin = new JLabel();
+        JLabel xMax = new JLabel();
+        JLabel yMin = new JLabel();
+        JLabel yMax = new JLabel();
+        
 		
 		public RenderWindow(ArrayList<JRadioButton> chartTypes,ArrayList<JCheckBox> dataTypes) {
 			this.chartTypes = chartTypes;
@@ -455,7 +460,7 @@ public class Visualizer {
 	        Graphics2D g2 = (Graphics2D) g;
 	        g2.setColor(Color.red);
 	        if(chartTypes.get(1).isSelected()) {
-	        	int alpha = 100;
+	        	int alpha = 120;
 	        	Color c0 = new Color(255,255,255,alpha);
 	        	Color c1 = new Color(255,150,150,alpha);
 	        	Color c2 = new Color(255,100,100,alpha);
