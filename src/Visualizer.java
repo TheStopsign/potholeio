@@ -389,6 +389,26 @@ public class Visualizer {
 				this.add(h.tt_id);
 				this.add(h.tt_diam);
 				this.add(h.tt_depth);
+				int x=-1,y=-1;
+				if(h.getX()<startX+(edge*1)) {
+        			x = 0;
+        		}else if(h.getX()<startX+(edge*2)) {
+        			x = 1;
+        		}else if(h.getX()<startX+(edge*3)) {
+        			x = 2;
+        		}else if(h.getX()<startX+(edge*4)) {
+        			x = 3;
+        		}else if(h.getX()<startX+(edge*5)) {
+        			x = 4;
+        		}
+        		if(h.getY()<startY+(edge*1)) {
+        			y = 0;
+        		}else if(h.getY()<startY+(edge*2)) {
+        			y = 1;
+        		}else if(h.getY()<startY+(edge*3)) {
+        			y = 2;
+        		}
+        		h.region = h.region+((char)(65+y))+(x+1);
 			}
 			
 			for(int i=0;i<5;i++) {
@@ -419,6 +439,16 @@ public class Visualizer {
 		//4|
 		//5|
 		//6|
+		
+		public double getMaxValue(double[] numbers) {
+	        double maxValue = numbers[0];
+	            for (int i = 0; i < numbers.length; i++) {
+	                if (numbers[i] > maxValue) {
+	                    maxValue = numbers[i];
+	                }
+	            }
+	        return maxValue;
+	    }
 		
 		public void paintComponent(Graphics g) {
 	        super.paintComponent(g);
@@ -473,7 +503,7 @@ public class Visualizer {
 		        				g2.setColor(c1);
 		        			}else if(regions[i][j]<=0.25) {
 		        				g2.setColor(c2);
-		        			}else {
+		        			}else{
 		        				g2.setColor(c3);
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
@@ -485,7 +515,7 @@ public class Visualizer {
 		        				g2.setColor(c1);
 		        			}else if(regions[i][j]<=3) {
 		        				g2.setColor(c2);
-		        			}else {
+		        			}else{
 		        				g2.setColor(c3);
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
@@ -496,18 +526,18 @@ public class Visualizer {
 		        				g2.setColor(c1);
 		        			}else if(regions[i][j]<=0.4) {
 		        				g2.setColor(c2);
-		        			}else {
+		        			}else{
 		        				g2.setColor(c3);
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
-	        			}else {
+	        			}else{
 		        			if(regions[i][j]<=1) {
 		        				g2.setColor(c0);
 		        			}else if(regions[i][j]<=2) {
 		        				g2.setColor(c1);
 		        			}else if(regions[i][j]<=4) {
 		        				g2.setColor(c2);
-		        			}else {
+		        			}else{
 		        				g2.setColor(c3);
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
@@ -531,7 +561,7 @@ public class Visualizer {
 		        			g2.setColor(new Color(255,85,85));
 		        		}else if(hole.getDepth()<0.15) {
 		        			g2.setColor(new Color(255,0,0));
-		        		}else {
+		        		}else{
 		        			g2.setColor(new Color(170,0,0));
 		        		}
 		        		hole.setPixelDiameter((int)(20*hole.getDiameter())+4);
@@ -545,11 +575,11 @@ public class Visualizer {
 		        			g2.setColor(new Color(255,85,85));
 		        		}else if(hole.getDepth()<0.15) {
 		        			g2.setColor(new Color(255,0,0));
-		        		}else {
+		        		}else{
 		        			g2.setColor(new Color(170,0,0));
 		        		}
 		        		hole.setPixelDiameter(20);       		
-		        	}else {
+		        	}else{
 		        		g2.setColor(new Color(255,0,0));
 		        		hole.setPixelDiameter(20);
 		            }
@@ -557,7 +587,82 @@ public class Visualizer {
 		        }
 	        }
 	        if(chartTypes.get(2).isSelected()) {
-	        	roadsImg.hide();
+	        	
+	        	Rectangle graphRegion = new Rectangle(startX+100, startY+100,1500,750);
+	        	int barWidth = (int)graphRegion.getWidth()/15;
+        		double[] barContents = new double[15];
+        		
+        		roadsImg.hide();
+	        	g2.setColor(Color.white);
+	        	g2.drawLine((int)(graphRegion.getX()),(int)(graphRegion.getY()),
+	        			(int)(graphRegion.getX()),(int)(graphRegion.getY()+graphRegion.getHeight()));
+	        	g2.drawLine((int)(graphRegion.getX()),(int)(graphRegion.getY()+graphRegion.getHeight()),
+        				(int)(graphRegion.getX()+graphRegion.getWidth()),(int)(graphRegion.getY()+graphRegion.getHeight()));
+	        	
+	        	if(dataTypes.get(0).isSelected() && dataTypes.get(0).isSelected()) {
+	        		
+	        	}else if(dataTypes.get(0).isSelected()) {
+	        		
+	        	}else if(dataTypes.get(1).isSelected()) {
+	        		
+	        	}else{
+	        		for(Hole h : holes) {
+	        			switch(h.region) {
+	        			case "A1":
+	        				barContents[0]++;
+	        				break;
+	        			case "A2":
+	        				barContents[1]++;
+	        				break;
+	        			case "A3":
+	        				barContents[2]++;
+	        				break;
+	        			case "A4":
+	        				barContents[3]++;
+	        				break;
+	        			case "A5":
+	        				barContents[4]++;
+	        				break;
+	        			case "B1":
+	        				barContents[5]++;
+	        				break;
+	        			case "B2":
+	        				barContents[6]++;
+	        				break;
+	        			case "B3":
+	        				barContents[7]++;
+	        				break;
+	        			case "B4":
+	        				barContents[8]++;
+	        				break;
+	        			case "B5":
+	        				barContents[9]++;
+	        				break;
+	        			case "C1":
+	        				barContents[10]++;
+	        				break;
+	        			case "C2":
+	        				barContents[11]++;
+	        				break;
+	        			case "C3":
+	        				barContents[12]++;
+	        				break;
+	        			case "C4":
+	        				barContents[13]++;
+	        				break;
+	        			case "C5":
+	        				barContents[14]++;
+	        				break;
+	        			}
+	        		}
+	        		double maxN = getMaxValue(barContents);
+	        		for(int n=0;n<barContents.length;n++) {
+	        			int h = (int)(graphRegion.getHeight()*(barContents[n]/maxN));
+	        			g2.setColor(Color.white);
+	        			g2.fillRect((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
+	        		}
+	        	}
+	        	
 	        }
 	        repaint();
 	    }

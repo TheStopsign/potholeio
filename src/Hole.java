@@ -18,6 +18,7 @@ public class Hole {
 	public JLabel tt_id;
 	public JLabel tt_diam;
 	public JLabel tt_depth;
+	public String region = "";
 	
 	public Hole(int id,int x,int y,float diameter, float depth, int traffic) {
 		hoverable = new JButton();
