@@ -74,7 +74,7 @@ public class Visualizer {
 	private JFrame frmPotholeVisualizer;
 	private final ButtonGroup visualTypes = new ButtonGroup();
 	private final ButtonGroup modes = new ButtonGroup();
-	private boolean firstHeatmap = true;
+	private JLabel roadsImg;
 
 	/**
 	 * Launch the application.
@@ -108,16 +108,17 @@ public class Visualizer {
 		ArrayList<JCheckBox> dataTypes = new ArrayList<JCheckBox>();
 		JRadioButton rdbtnMap = new JRadioButton("Map");
 		JRadioButton rdbtnHeatmap = new JRadioButton("Heatmap");
+		JRadioButton rdbtnBarGraph = new JRadioButton("Bar Graph");
 		JCheckBox optionHoleSize = new JCheckBox("Hole Diameter");
 		JCheckBox optionHoleDepth = new JCheckBox("Hole Depth");
 		JCheckBox optionTraffic = new JCheckBox("Traffic Level");
 		JButton showSettings = new JButton("M e n u");
 		JButton hideSettings = new JButton("M e n u");
 		
-		ImageIcon tmp = new ImageIcon("/home/thestopsign/Dropbox/School/Semester 5/Interactive Data Visualization/bin/resources/troymap_roads.png");
+		ImageIcon tmp = new ImageIcon("src/troymap_roads.png");
 		Image tmp2 = tmp.getImage().getScaledInstance((int)(3332*.45), (int)(2076*.45),  java.awt.Image.SCALE_SMOOTH);
 		ImageIcon tmp3 = new ImageIcon(tmp2);
-		JLabel roadsImg = new JLabel(tmp3);
+		roadsImg = new JLabel(tmp3);
 		
 		
 		Color bckgndColor = SystemColor.desktop;
@@ -160,6 +161,10 @@ public class Visualizer {
 		dataToolbar.hide();
 		renderContainer.add(showSettings);
 		renderContainer.add(renderWindow);
+		
+		////////////////////////////////////////////////////////////////////////
+		//Chart Options
+		////////////////////////////////////////////////////////////////////////
 		
 		
 		JLabel lblCharts = new JLabel("Charts");
@@ -206,17 +211,24 @@ public class Visualizer {
 		rdbtnHeatmap.setBounds(36, 162, 144, 23);
 		dataToolbar.add(rdbtnHeatmap);
 		
+		rdbtnBarGraph.setBounds(36, 189, 144, 23);
+		rdbtnBarGraph.setForeground(Color.white);
+		rdbtnBarGraph.setBackground(bckgndColor);
+		rdbtnBarGraph.setFont(new Font("Dialog", Font.BOLD, 16));
+		visualTypes.add(rdbtnBarGraph);
+		dataToolbar.add(rdbtnBarGraph);
+		
 		JLabel lblData = new JLabel("Data");
 		lblData.setForeground(Color.WHITE);
 		lblData.setHorizontalAlignment(SwingConstants.LEFT);
 		lblData.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblData.setBounds(36, 212, 121, 36);
+		lblData.setBounds(36, 236, 121, 36);
 		dataToolbar.add(lblData);
 		
 		optionHoleSize.setForeground(Color.WHITE);
 		optionHoleSize.setBackground(bckgndColor);
 		optionHoleSize.setFont(new Font("Dialog", Font.BOLD, 16));
-		optionHoleSize.setBounds(36, 256, 155, 23);
+		optionHoleSize.setBounds(36, 280, 155, 23);
 		dataToolbar.add(optionHoleSize);
 		
 		optionHoleDepth.addMouseListener(new MouseAdapter() {
@@ -228,7 +240,7 @@ public class Visualizer {
 		optionHoleDepth.setForeground(Color.WHITE);
 		optionHoleDepth.setBackground(bckgndColor);
 		optionHoleDepth.setFont(new Font("Dialog", Font.BOLD, 16));
-		optionHoleDepth.setBounds(36, 283, 126, 23);
+		optionHoleDepth.setBounds(36, 307, 126, 23);
 		dataToolbar.add(optionHoleDepth);
 		
 		showSettings.setBounds(12, 12, 279, 61);
@@ -256,7 +268,7 @@ public class Visualizer {
 		optionTraffic.setForeground(Color.WHITE);
 		optionTraffic.setFont(new Font("Dialog", Font.BOLD, 16));
 		optionTraffic.setBackground(SystemColor.desktop);
-		optionTraffic.setBounds(36, 310, 144, 23);
+		optionTraffic.setBounds(36, 334, 144, 23);
 		dataToolbar.add(optionTraffic);
 		optionTraffic.hide();
 		
@@ -321,7 +333,7 @@ public class Visualizer {
 		modes.add(rdbtnNavigation);
 		mode.add(rdbtnNavigation);
 		
-		chartTypes.add(0,rdbtnMap);	chartTypes.add(1,rdbtnHeatmap);
+		chartTypes.add(0,rdbtnMap);	chartTypes.add(1,rdbtnHeatmap); chartTypes.add(2,rdbtnBarGraph);
 		dataTypes.add(0,optionHoleSize);	dataTypes.add(1,optionHoleDepth);	dataTypes.add(2,optionTraffic);
 		
 	roadsImg.setFont(new Font("Dialog", Font.BOLD, 24));
@@ -500,7 +512,7 @@ public class Visualizer {
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
 	        			}
-	        			regionLbls[i][j].show();
+//	        			regionLbls[i][j].show();
         				g2.setColor(Color.white);
 	        			g2.drawLine(startX+(edge*i), startY+(edge*j), startX+(edge*(i+1)), startY+(edge*(j)));
 	        			g2.drawLine(startX+(edge*i), startY+(edge*j), startX+(edge*(i)), startY+(edge*(j+1)));
@@ -510,6 +522,7 @@ public class Visualizer {
 	        	}
 	        }
 	        if(chartTypes.get(0).isSelected()||chartTypes.get(1).isSelected()) {
+	        	roadsImg.show();
 	        	for (Hole hole : holes) { // Draw points
 		        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
 		        		if(hole.getDepth()<0.05) {
@@ -543,14 +556,8 @@ public class Visualizer {
 	        		g2.fillOval(hole.getX()-hole.getOffset(), hole.getY()-hole.getOffset(),hole.getPixelDiameter(), hole.getPixelDiameter());
 		        }
 	        }
-	        
-	        
-	        if(chartTypes.get(0).isSelected()) {
-	        	for(int i=0;i<5;i++) {
-	        		for(int j=0;j<3;j++) {
-	        			regionLbls[i][j].hide();
-	        		}
-	        	}
+	        if(chartTypes.get(2).isSelected()) {
+	        	roadsImg.hide();
 	        }
 	        repaint();
 	    }

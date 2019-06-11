@@ -44,7 +44,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70710678"
-     inkscape:cx="259.39077"
+     inkscape:cx="9.7820758"
      inkscape:cy="431.70288"
      inkscape:document-units="mm"
      inkscape:current-layer="layer2"
@@ -223,133 +223,6 @@
        cy="138.72476"
        r="4.490128" />
     <g
-       id="g4210">
-      <rect
-         y="12.262543"
-         x="13.234354"
-         height="187.66708"
-         width="62.317684"
-         id="rect870"
-         style="fill:#008080;fill-opacity:1;stroke:#ffffff;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <rect
-         transform="rotate(90)"
-         y="-75.406807"
-         x="12.060193"
-         height="61.771667"
-         width="12.316071"
-         id="rect933"
-         style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:2.29364705;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-weight:normal;font-size:11.28446198px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#008080;fill-opacity:1;stroke:none;stroke-width:0.28211156"
-         x="23.805468"
-         y="21.389433"
-         id="text4177"><tspan
-           sodipodi:role="line"
-           id="tspan4175"
-           x="23.805468"
-           y="21.389433"
-           style="fill:#008080;stroke-width:0.28211156">M e n u</tspan></text>
-    </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:8.2635088px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.20658772"
-       x="19.883541"
-       y="44.122181"
-       id="text937"><tspan
-         sodipodi:role="line"
-         id="tspan935"
-         x="19.883541"
-         y="44.122181"
-         style="fill:#ffffff;stroke-width:0.20658772">Chart</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="28.736452"
-       y="52.674957"
-       id="text941"><tspan
-         sodipodi:role="line"
-         id="tspan939"
-         x="28.736452"
-         y="52.674957"
-         style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332">Map</tspan></text>
-    <text
-       id="text945"
-       y="59.554131"
-       x="28.736452"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"><tspan
-         style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
-         y="59.554131"
-         x="28.736452"
-         sodipodi:role="line"
-         id="tspan955">Heatmap</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="29.265619"
-       y="93.949989"
-       id="text949"><tspan
-         sodipodi:role="line"
-         id="tspan947"
-         x="29.265619"
-         y="93.949989"
-         style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332">Diameter</tspan></text>
-    <text
-       id="text953"
-       y="101.35833"
-       x="29.265619"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"><tspan
-         style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
-         y="101.35833"
-         x="29.265619"
-         id="tspan951"
-         sodipodi:role="line">Dept</tspan></text>
-    <rect
-       style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect959"
-       width="4.4901276"
-       height="4.4901276"
-       x="21.26391"
-       y="89.477303" />
-    <rect
-       y="96.885643"
-       x="21.26391"
-       height="4.4901276"
-       width="4.4901276"
-       id="rect1231"
-       style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-    <circle
-       style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:3.11111116;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path1233"
-       cx="23.444778"
-       cy="49.927319"
-       r="2.6192415" />
-    <circle
-       r="2.6192415"
-       cy="57.335655"
-       cx="23.444778"
-       id="circle1235"
-       style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:3.11111116;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-    <circle
-       style="fill:#000000;fill-opacity:0.98999999;stroke:none;stroke-width:2.4000001;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path1237"
-       cx="23.573172"
-       cy="50.146507"
-       r="1.122532" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:8.10490799px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.2026227"
-       x="44.545746"
-       y="158.58754"
-       id="text1241"><tspan
-         sodipodi:role="line"
-         x="44.545746"
-         y="158.58754"
-         style="text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.2026227"
-         id="tspan1243">etc...</tspan></text>
-    <g
        id="g3554"
        transform="translate(198.43758,6.3500003)">
       <rect
@@ -382,33 +255,163 @@
            y="-7.4902973"
            style="fill:#fffffd;fill-opacity:1;stroke-width:0.26458332">Mode</tspan></text>
     </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="28.736452"
-       y="66.962479"
-       id="text4173"><tspan
-         id="tspan4171"
-         sodipodi:role="line"
-         x="28.736452"
-         y="66.962479"
-         style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332">Bar Graph</tspan></text>
-    <circle
-       style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:3.11111116;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="circle4175"
-       cx="23.444778"
-       cy="64.743996"
-       r="2.6192415" />
-    <text
-       id="text4171"
-       y="85.926338"
-       x="19.883541"
-       style="font-style:normal;font-weight:normal;font-size:8.2635088px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.20658772"
-       xml:space="preserve"><tspan
-         style="fill:#ffffff;stroke-width:0.20658772"
-         y="85.926338"
+    <g
+       id="g2301">
+      <g
+         id="g4210">
+        <rect
+           style="fill:#008080;fill-opacity:1;stroke:#ffffff;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect870"
+           width="62.317684"
+           height="187.66708"
+           x="13.234354"
+           y="12.262543" />
+        <rect
+           style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:2.29364705;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect933"
+           width="12.316071"
+           height="61.771667"
+           x="12.060193"
+           y="-75.406807"
+           transform="rotate(90)" />
+        <text
+           id="text4177"
+           y="21.389433"
+           x="23.805468"
+           style="font-style:normal;font-weight:normal;font-size:11.28446198px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#008080;fill-opacity:1;stroke:none;stroke-width:0.28211156"
+           xml:space="preserve"><tspan
+             style="fill:#008080;stroke-width:0.28211156"
+             y="21.389433"
+             x="23.805468"
+             id="tspan4175"
+             sodipodi:role="line">M e n u</tspan></text>
+      </g>
+      <text
+         id="text937"
+         y="44.122181"
          x="19.883541"
-         id="tspan4169"
-         sodipodi:role="line">Data</tspan></text>
+         style="font-style:normal;font-weight:normal;font-size:8.2635088px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.20658772"
+         xml:space="preserve"><tspan
+           style="fill:#ffffff;stroke-width:0.20658772"
+           y="44.122181"
+           x="19.883541"
+           id="tspan935"
+           sodipodi:role="line">Chart</tspan></text>
+      <text
+         id="text941"
+         y="52.674957"
+         x="28.736452"
+         style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
+           y="52.674957"
+           x="28.736452"
+           id="tspan939"
+           sodipodi:role="line">Map</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="28.736452"
+         y="59.554131"
+         id="text945"><tspan
+           id="tspan955"
+           sodipodi:role="line"
+           x="28.736452"
+           y="59.554131"
+           style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332">Heatmap</tspan></text>
+      <text
+         id="text949"
+         y="93.949989"
+         x="29.265619"
+         style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
+           y="93.949989"
+           x="29.265619"
+           id="tspan947"
+           sodipodi:role="line">Diameter</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="29.265619"
+         y="101.35833"
+         id="text953"><tspan
+           sodipodi:role="line"
+           id="tspan951"
+           x="29.265619"
+           y="101.35833"
+           style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332">Dept</tspan></text>
+      <rect
+         y="89.477303"
+         x="21.26391"
+         height="4.4901276"
+         width="4.4901276"
+         id="rect959"
+         style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1231"
+         width="4.4901276"
+         height="4.4901276"
+         x="21.26391"
+         y="96.885643" />
+      <circle
+         r="2.6192415"
+         cy="49.927319"
+         cx="23.444778"
+         id="path1233"
+         style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:3.11111116;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <circle
+         style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:3.11111116;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="circle1235"
+         cx="23.444778"
+         cy="57.335655"
+         r="2.6192415" />
+      <circle
+         r="1.122532"
+         cy="50.146507"
+         cx="23.573172"
+         id="path1237"
+         style="fill:#000000;fill-opacity:0.98999999;stroke:none;stroke-width:2.4000001;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         id="text1241"
+         y="158.58754"
+         x="44.545746"
+         style="font-style:normal;font-weight:normal;font-size:8.10490799px;line-height:1.25;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.2026227"
+         xml:space="preserve"><tspan
+           id="tspan1243"
+           style="text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.2026227"
+           y="158.58754"
+           x="44.545746"
+           sodipodi:role="line">etc...</tspan></text>
+      <text
+         id="text4173"
+         y="66.962479"
+         x="28.736452"
+         style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
+           y="66.962479"
+           x="28.736452"
+           sodipodi:role="line"
+           id="tspan4171">Bar Graph</tspan></text>
+      <circle
+         r="2.6192415"
+         cy="64.743996"
+         cx="23.444778"
+         id="circle4175"
+         style="fill:#ffffff;fill-opacity:0.98999999;stroke:none;stroke-width:3.11111116;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:8.2635088px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.20658772"
+         x="19.883541"
+         y="85.926338"
+         id="text4171"><tspan
+           sodipodi:role="line"
+           id="tspan4169"
+           x="19.883541"
+           y="85.926338"
+           style="fill:#ffffff;stroke-width:0.20658772">Data</tspan></text>
+    </g>
   </g>
 </svg>
