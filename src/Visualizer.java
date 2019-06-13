@@ -355,6 +355,7 @@ public class Visualizer {
         JLabel yMin = new JLabel();
         JLabel yMed = new JLabel();
         JLabel yMax = new JLabel();
+        JLabel chartTitle = new JLabel();
         
 		
 		public RenderWindow(ArrayList<JRadioButton> chartTypes,ArrayList<JCheckBox> dataTypes) {
@@ -429,6 +430,7 @@ public class Visualizer {
 			this.add(yMin); yMin.hide();
 			this.add(yMed); yMed.hide();
 			this.add(yMax); yMax.hide();
+			this.add(chartTitle); chartTitle.hide();
 		}
 		
 		public void render() {
@@ -460,6 +462,7 @@ public class Visualizer {
 	        super.paintComponent(g);
 	        Graphics2D g2 = (Graphics2D) g;
 	        g2.setColor(Color.red);
+	        chartTitle.hide();
 	        if(chartTypes.get(0).isSelected()) {
 	        	for(int i=0;i<5;i++) {
 	        		for(int j=0;j<3;j++)
@@ -614,6 +617,8 @@ public class Visualizer {
         				(int)(graphRegion.getX()+(barWidth*15)),(int)(graphRegion.getY()+graphRegion.getHeight()));
 	        	
 	        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
+                    // pothole size and depth
+                    chartTitle.setText("Pothole Volume");
 	        		for(Hole h : holes) {
 	        			switch(h.region) {
 	        			case "A1":
@@ -664,6 +669,7 @@ public class Visualizer {
 	        			}
 	        		}
 	        	}else if(dataTypes.get(0).isSelected()) {
+                    chartTitle.setText("Pothole Size");
 	        		for(Hole h : holes) {
 	        			switch(h.region) {
 	        			case "A1":
@@ -714,6 +720,7 @@ public class Visualizer {
 	        			}
 	        		}
 	        	}else if(dataTypes.get(1).isSelected()) {
+                    chartTitle.setText("Pothole Depth");
 	        		for(Hole h : holes) {
 	        			switch(h.region) {
 	        			case "A1":
@@ -764,6 +771,7 @@ public class Visualizer {
 	        			}
 	        		}
 	        	}else{
+                    chartTitle.setText("Pothole Count");
 	        		for(Hole h : holes) {
 	        			switch(h.region) {
 	        			case "A1":
@@ -842,6 +850,10 @@ public class Visualizer {
     			yMed.setText(String.format("%.2f m", maxN/2)); yMed.show();
     			yMax.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()-15),100,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
     			yMax.setText(String.format("%.2f m", maxN)); yMax.show();
+    			chartTitle.setBounds(800, 100, 500, 50); // center title
+    			chartTitle.setForeground(Color.white);
+    			chartTitle.setFont(new Font("Dialog", Font.BOLD, 36));
+    			chartTitle.show();
         	}
 	        repaint();
 	    }
