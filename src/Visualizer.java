@@ -352,9 +352,8 @@ public class Visualizer {
     	int startX = 145,startY = 10;
     	double regions[][] = new double[5][4];
         JLabel regionLbls[][] = new JLabel[5][4];
-        JLabel xMin = new JLabel();
-        JLabel xMax = new JLabel();
         JLabel yMin = new JLabel();
+        JLabel yMed = new JLabel();
         JLabel yMax = new JLabel();
         
 		
@@ -419,15 +418,17 @@ public class Visualizer {
 			for(int i=0;i<5;i++) {
 	    		for(int j=0;j<3;j++) {
 	    			regionLbls[i][j] = new JLabel();
-	    			regionLbls[i][j].setBounds(startX+(edge*(i+1))-(edge*3/4), startY+(edge*(j+1))-(edge*3/4), edge/2, edge/2);
 	    			String contents = new String(""+((char)(65+j))+(i+1));
 	    			regionLbls[i][j].setText(contents);
 	    			regionLbls[i][j].setHorizontalAlignment(0);
-	    			regionLbls[i][j].setForeground(Color.black);
-	    			regionLbls[i][j].setFont(new Font("Dialog",0,24));
-//	    			this.add(regionLbls[i][j]);
+	    			regionLbls[i][j].setForeground(Color.white);
+	    			regionLbls[i][j].setFont(new Font("Dialog",Font.BOLD,24));
+	    			this.add(regionLbls[i][j]);
 	    		}
 	        }
+			this.add(yMin); yMin.hide();
+			this.add(yMed); yMed.hide();
+			this.add(yMax); yMax.hide();
 		}
 		
 		public void render() {
@@ -459,6 +460,12 @@ public class Visualizer {
 	        super.paintComponent(g);
 	        Graphics2D g2 = (Graphics2D) g;
 	        g2.setColor(Color.red);
+	        if(chartTypes.get(0).isSelected()) {
+	        	for(int i=0;i<5;i++) {
+	        		for(int j=0;j<3;j++)
+		        		regionLbls[i][j].hide();
+	        	}
+	        }
 	        if(chartTypes.get(1).isSelected()) {
 	        	int alpha = 120;
 	        	Color c0 = new Color(255,255,255,alpha);
@@ -547,7 +554,8 @@ public class Visualizer {
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
 	        			}
-//	        			regionLbls[i][j].show();
+	        			regionLbls[i][j].setBounds(startX+(edge*(i+1))-(edge*3/4), startY+(edge*(j+1))-(edge*3/4), edge/2, edge/2);
+	        			regionLbls[i][j].show();
         				g2.setColor(Color.white);
 	        			g2.drawLine(startX+(edge*i), startY+(edge*j), startX+(edge*(i+1)), startY+(edge*(j)));
 	        			g2.drawLine(startX+(edge*i), startY+(edge*j), startX+(edge*(i)), startY+(edge*(j+1)));
@@ -558,6 +566,7 @@ public class Visualizer {
 	        }
 	        if(chartTypes.get(0).isSelected()||chartTypes.get(1).isSelected()) {
 	        	roadsImg.show();
+	        	yMin.hide(); yMed.hide(); yMax.hide();
 	        	for (Hole hole : holes) { // Draw points
 		        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
 		        		if(hole.getDepth()<0.05) {
@@ -808,12 +817,32 @@ public class Visualizer {
 	        	double maxN = getMaxValue(barContents);
         		for(int n=0;n<barContents.length;n++) {
         			int h = (int)(graphRegion.getHeight()*(barContents[n]/maxN));
+        			//draw bars
         			g2.setColor(Color.red);
         			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
-        			
+        			//top,left,right borders
+        			g2.setColor(Color.white);
+        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h));
+        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+        					(int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()));
+        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()));
         		}
-	        	
-	        }
+        		for(int i=0;i<5;i++) {
+            		for(int j=0;j<3;j++) {
+            			regionLbls[i][j].setBounds((int)graphRegion.getX()+1+(barWidth*((5*j)+i)), (int)(graphRegion.getY()+graphRegion.getHeight()),
+            					barWidth, 50);
+            			regionLbls[i][j].show();
+            		}
+        		}
+    			yMin.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
+    			yMin.setText("0.00 m"); yMin.show();
+    			yMed.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),100,30); yMed.setForeground(Color.white); yMed.setFont(new Font("Dialog",Font.BOLD,24));
+    			yMed.setText(String.format("%.2f m", maxN/2)); yMed.show();
+    			yMax.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()-15),100,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
+    			yMax.setText(String.format("%.2f m", maxN)); yMax.show();
+        	}
 	        repaint();
 	    }
 	}
