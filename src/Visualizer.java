@@ -74,7 +74,7 @@ public class Visualizer {
 	private JFrame frmPotholeVisualizer;
 	private final ButtonGroup visualTypes = new ButtonGroup();
 	private final ButtonGroup modes = new ButtonGroup();
-	private JLabel roadsImg;
+	private JLabel roadsImg,minimap;
 
 	/**
 	 * Launch the application.
@@ -120,6 +120,10 @@ public class Visualizer {
 		ImageIcon tmp3 = new ImageIcon(tmp2);
 		roadsImg = new JLabel(tmp3);
 		
+		Image tmp4 = tmp.getImage().getScaledInstance((int)(3332*.195), (int)(2076*.195),  java.awt.Image.SCALE_SMOOTH);
+		ImageIcon tmp5 = new ImageIcon(tmp4);
+		minimap = new JLabel(tmp5);
+		
 		
 		Color bckgndColor = SystemColor.desktop;
 		
@@ -152,7 +156,7 @@ public class Visualizer {
 		renderWindow.setLayout(null);
 		
 		JPanel dataToolbar = new JPanel();
-		dataToolbar.setBounds(12, 12, 279, 966);
+		dataToolbar.setBounds(12, 12, 279, 400);
 		dataToolbar.setForeground(Color.WHITE);
 		dataToolbar.setBackground(bckgndColor);
 		dataToolbar.setBorder(new LineBorder(new Color(255, 255, 255), 4));
@@ -350,13 +354,22 @@ public class Visualizer {
 		ArrayList<JButton> hoverables;
 		int edge = 325;
     	int startX = 145,startY = 10;
+        int graphX = 150,graphY = 450,graphWidth = 1200, graphHeight = 500;
     	double regions[][] = new double[5][4];
         JLabel regionLbls[][] = new JLabel[5][4];
         JLabel yMin = new JLabel();
         JLabel yMed = new JLabel();
         JLabel yMax = new JLabel();
         JLabel chartTitle = new JLabel();
-        
+        JPanel minis[][] = new JPanel[5][3];
+        int miniEdge = 140,miniX=1200,miniY=20;
+        int alpha = 140;
+    	Color c0 = new Color(255,255,255,alpha);
+    	Color c1 = new Color(255,150,150,alpha);
+    	Color c2 = new Color(255,100,100,alpha);
+    	Color c3 = new Color(255,0,0,alpha);
+    	double[] barContents = new double[15];
+    	JPanel barHovers[] = new JPanel[15];
 		
 		public RenderWindow(ArrayList<JRadioButton> chartTypes,ArrayList<JCheckBox> dataTypes) {
 			this.chartTypes = chartTypes;
@@ -431,10 +444,60 @@ public class Visualizer {
 			this.add(yMed); yMed.hide();
 			this.add(yMax); yMax.hide();
 			this.add(chartTitle); chartTitle.hide();
+			
+			for(int i=0;i<5;i++) {
+	    		for(int j=0;j<3;j++) {
+	    			int f = i;
+	    			int g = j;
+	    			JPanel temp = new JPanel();
+	    			JPanel temp2 = new JPanel();
+	    			temp.setBounds(miniX+(miniEdge*i), miniY+(miniEdge*j), miniEdge, miniEdge);
+        			temp.setBackground(c2);
+        			temp2.setBackground(new Color(255,0,0,0));
+	    			temp.setBorder(new LineBorder(Color.black));
+	    			temp.addMouseListener(new MouseAdapter() {
+	    				@Override
+	    				public void mouseEntered(MouseEvent e) {
+	    					temp.setBackground(Color.white);
+	    					temp2.setBackground(Color.white);
+	    				}
+	    			});
+	    			temp.addMouseListener(new MouseAdapter() {
+	    				@Override
+	    				public void mouseExited(MouseEvent e) {
+		        			temp.setBackground(c2);
+		        			temp2.setBackground(new Color(255,0,0,255));
+	    				}
+	    			});
+	    			temp2.addMouseListener(new MouseAdapter() {
+	    				@Override
+	    				public void mouseEntered(MouseEvent e) {
+	    					temp.setBackground(Color.white);
+	            			temp2.setBackground(Color.white);
+	    				}
+	    			});
+	    			temp2.addMouseListener(new MouseAdapter() {
+	    				@Override
+	    				public void mouseExited(MouseEvent e) {
+	    					temp.setBackground(c2);
+	            			temp2.setBackground(new Color(255,0,0,255));
+	    				}
+	    			});
+	    			minis[i][j] = temp;
+	    			barHovers[(5*j)+i] = temp2;
+	    			this.add(minis[i][j]);
+	    			this.add(barHovers[(5*j)+i]);
+	    			minis[i][j].hide();
+	    			barHovers[(5*j)+i].hide();
+	    		}
+    		}
+			minimap.setBounds(miniX-100, miniY-240, 900	, 900);
+			this.add(minimap);
+			minimap.hide();
 		}
 		
 		public void render() {
-			paintComponent(this.getGraphics());
+			paintComponent(this.getGraphics());			
 		}
 		
 		// +----------------------------------------------------+
@@ -470,14 +533,10 @@ public class Visualizer {
 	        	}
 	        }
 	        if(chartTypes.get(1).isSelected()) {
-	        	int alpha = 120;
-	        	Color c0 = new Color(255,255,255,alpha);
-	        	Color c1 = new Color(255,150,150,alpha);
-	        	Color c2 = new Color(255,100,100,alpha);
-	        	Color c3 = new Color(255,0,0,alpha);
 	        	for(int i=0;i<5;i++) {
-	        		for(int j=0;j<3;j++)
+	        		for(int j=0;j<3;j++) {
 		        		regions[i][j]=0;
+	        		}
 	        	}
 	        	for(Hole hole : holes) {
 	        		int x=-1,y=-1;
@@ -522,7 +581,6 @@ public class Visualizer {
 		        				g2.setColor(c3);
 		        			}
 			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
-	        				
 	        			}else if(dataTypes.get(0).isSelected()) {
 		        			if(regions[i][j]<=1) {
 		        				g2.setColor(c0);
@@ -568,7 +626,7 @@ public class Visualizer {
 	        	}
 	        }
 	        if(chartTypes.get(0).isSelected()||chartTypes.get(1).isSelected()) {
-	        	roadsImg.show();
+	        	roadsImg.show();minimap.hide();
 	        	yMin.hide(); yMed.hide(); yMax.hide();
 	        	for (Hole hole : holes) { // Draw points
 		        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
@@ -602,12 +660,18 @@ public class Visualizer {
 		            }
 	        		g2.fillOval(hole.getX()-hole.getOffset(), hole.getY()-hole.getOffset(),hole.getPixelDiameter(), hole.getPixelDiameter());
 		        }
+	        	for(int i=0;i<5;i++) {
+	        		for(int j=0;j<3;j++) {
+	        			minis[i][j].hide();
+	        			barHovers[(5*j)+i].hide();
+	        		}
+	        	}
 	        }
 	        if(chartTypes.get(2).isSelected()) {
+	        	minimap.show();
 	        	
-	        	Rectangle graphRegion = new Rectangle(startX+75, startY+200,1400,700);
+	        	Rectangle graphRegion = new Rectangle(graphX, graphY,graphWidth,graphHeight);
 	        	int barWidth = (int)graphRegion.getWidth()/15;
-        		double[] barContents = new double[15];
         		
         		roadsImg.hide();
 	        	g2.setColor(Color.white);
@@ -615,7 +679,9 @@ public class Visualizer {
 	        			(int)(graphRegion.getX()),(int)(graphRegion.getY()+graphRegion.getHeight()));
 	        	g2.drawLine((int)(graphRegion.getX()),(int)(graphRegion.getY()+graphRegion.getHeight()),
         				(int)(graphRegion.getX()+(barWidth*15)),(int)(graphRegion.getY()+graphRegion.getHeight()));
-	        	
+	        	for(int i=0;i<15;i++) {
+	        		barContents[i] = 0;
+	        	}
 	        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
                     // pothole size and depth
                     chartTitle.setText("Pothole Volume");
@@ -828,6 +894,7 @@ public class Visualizer {
         			//draw bars
         			g2.setColor(Color.red);
         			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
+        			barHovers[n].setBounds((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+1+graphRegion.getHeight()-h), barWidth-1, h-1);
         			//top,left,right borders
         			g2.setColor(Color.white);
         			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
@@ -842,6 +909,8 @@ public class Visualizer {
             			regionLbls[i][j].setBounds((int)graphRegion.getX()+1+(barWidth*((5*j)+i)), (int)(graphRegion.getY()+graphRegion.getHeight()),
             					barWidth, 50);
             			regionLbls[i][j].show();
+            			minis[i][j].show();
+            			barHovers[(5*j)+i].show();
             		}
         		}
     			yMin.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
@@ -850,8 +919,9 @@ public class Visualizer {
     			yMed.setText(String.format("%.2f m", maxN/2)); yMed.show();
     			yMax.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()-15),100,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
     			yMax.setText(String.format("%.2f m", maxN)); yMax.show();
-    			chartTitle.setBounds(800, 100, 500, 50); // center title
+    			chartTitle.setBounds(500, 300, 500, 50); // center title
     			chartTitle.setForeground(Color.white);
+    			chartTitle.setHorizontalAlignment(0);
     			chartTitle.setFont(new Font("Dialog", Font.BOLD, 36));
     			chartTitle.show();
         	}
