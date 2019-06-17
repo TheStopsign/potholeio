@@ -629,6 +629,7 @@ public class Visualizer {
 	        	roadsImg.show();minimap.hide();
 	        	yMin.hide(); yMed.hide(); yMax.hide();
 	        	for (Hole hole : holes) { // Draw points
+	        		hole.hoverable.show();
 		        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
 		        		if(hole.getDepth()<0.05) {
 		        			g2.setColor(new Color(255,170,170));
@@ -665,6 +666,10 @@ public class Visualizer {
 	        			minis[i][j].hide();
 	        			barHovers[(5*j)+i].hide();
 	        		}
+	        	}
+	        }else {
+	        	for(Hole h : holes) {
+	        		h.hoverable.hide();
 	        	}
 	        }
 	        if(chartTypes.get(2).isSelected()) {
