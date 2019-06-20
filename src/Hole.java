@@ -13,13 +13,13 @@ public class Hole {
 	private float diameter;
 	private float depth;
 	private int traffic;
-	private Color c;
 	public JButton hoverable;
 	public JLabel tt_id;
 	public JLabel tt_diam;
 	public JLabel tt_depth;
 	public JLabel tt_volume;
 	public JLabel tt_cost;
+	public JLabel tt_traffic;
 	public int region = -1;
 	
 	public Hole(int id,int x,int y,float diameter, float depth, int traffic) {
@@ -61,19 +61,29 @@ public class Hole {
 		tt_cost.setOpaque(true);
 		tt_cost.setVerticalAlignment(1);
 		tt_cost.hide();
-		if(y+38>=1900) {
-			tt_id.setBounds(getX()+getPixelDiameter(), 1900-42, 130, 14);
-			tt_diam.setBounds(getX()+getPixelDiameter(), 1900-42+14, 130, 14);
-			tt_depth.setBounds(getX()+getPixelDiameter(), 1900-42+28, 130, 14);
-			tt_volume.setBounds(getX()+getPixelDiameter(), 1900-42+42, 130, 14);
-			tt_cost.setBounds(getX()+getPixelDiameter(), 1900-42+56, 130, 14);
-		}else{
-			tt_id.setBounds(getX()+getPixelDiameter(), getY(), 130, 14);
-			tt_diam.setBounds(getX()+getPixelDiameter(), getY()+14, 130, 14);
-			tt_depth.setBounds(getX()+getPixelDiameter(), getY()+28, 130, 14);
-			tt_volume.setBounds(getX()+getPixelDiameter(), getY()+42, 130, 14);
-			tt_cost.setBounds(getX()+getPixelDiameter(), getY()+56, 130, 14);
+		switch (traffic){
+		case 1:
+			tt_traffic = new JLabel(new String("Traffic:Low"));
+			break;
+		case 2:
+			tt_traffic = new JLabel(new String("Traffic:Med"));
+			break;
+		case 3:
+			tt_traffic = new JLabel(new String("Traffic:High"));
+			break;
 		}
+		tt_traffic.setBackground(Color.white);
+		tt_traffic.setOpaque(true);
+		tt_traffic.setVerticalAlignment(1);
+		tt_traffic.hide();
+		
+		tt_id.setBounds(getX()+getPixelDiameter(), getY(), 130, 14);
+		tt_diam.setBounds(getX()+getPixelDiameter(), getY()+14, 130, 14);
+		tt_depth.setBounds(getX()+getPixelDiameter(), getY()+28, 130, 14);
+		tt_volume.setBounds(getX()+getPixelDiameter(), getY()+42, 130, 14);
+		tt_cost.setBounds(getX()+getPixelDiameter(), getY()+56, 130, 14);
+		tt_traffic.setBounds(getX()+getPixelDiameter(), getY()+70, 130, 14);
+		
 		hoverable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -82,6 +92,7 @@ public class Hole {
 				tt_depth.show();
 				tt_volume.show();
 				tt_cost.show();
+				tt_traffic.show();
 			}
 		});
 		hoverable.addMouseListener(new MouseAdapter() {
@@ -92,6 +103,7 @@ public class Hole {
 				tt_depth.hide();
 				tt_volume.hide();
 				tt_cost.hide();
+				tt_traffic.hide();
 			}
 		});
 	}
@@ -152,14 +164,6 @@ public class Hole {
 		this.pixelDiameter = pixelDiameter;
 		this.setOffset(pixelDiameter/4);
 		this.hoverable.setBounds(this.getX()-this.getOffset(),this.getY()-this.getOffset(), this.getPixelDiameter(), this.getPixelDiameter());
-	}
-
-	public Color getC() {
-		return c;
-	}
-
-	public void setC(Color c) {
-		this.c = c;
 	}
 
 	public int getOffset() {

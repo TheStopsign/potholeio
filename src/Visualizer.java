@@ -328,7 +328,7 @@ public class Visualizer {
         int miniEdge = 140,miniX=1200,miniY=10;
         int alpha = 140;
     	Color c0 = new Color(255,255,255,alpha);
-    	Color c1 = new Color(255,150,150,alpha);
+    	Color c1 = new Color(255,175,175,alpha);
     	Color c2 = new Color(255,100,100,alpha);
     	Color c3 = new Color(255,0,0,alpha);
     	double[] barContents = new double[15];
@@ -428,8 +428,8 @@ public class Visualizer {
 	    			temp.addMouseListener(new MouseAdapter() {
 	    				@Override
 	    				public void mouseEntered(MouseEvent e) {
-	    					temp.setBackground(Color.white);
-	    					temp2.setBackground(Color.white);
+	    					temp.setBackground(new Color(255,255,255,175));
+	            			temp2.setBackground(new Color(255,255,255,175));
 	    				}
 	    			});
 	    			temp.addMouseListener(new MouseAdapter() {
@@ -442,8 +442,8 @@ public class Visualizer {
 	    			temp2.addMouseListener(new MouseAdapter() {
 	    				@Override
 	    				public void mouseEntered(MouseEvent e) {
-	    					temp.setBackground(Color.white);
-	            			temp2.setBackground(Color.white);
+	    					temp.setBackground(new Color(255,255,255,175));
+	            			temp2.setBackground(new Color(255,255,255,175));
 	    				}
 	    			});
 	    			temp2.addMouseListener(new MouseAdapter() {
@@ -786,6 +786,13 @@ public class Visualizer {
         			yMed.setText(String.format("%.2f|%.2f", maxN/2,(50*((maxN/2)/0.179)))); yMed.show();
         			yMax.setBounds((int)graphRegion.getX()-195,(int)(graphRegion.getY()-15),300,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
         			yMax.setText(String.format("%.2f|%.2f", maxN,(50*((maxN)/0.179)))); yMax.show();
+        		}else if(!optionHoleDepth.isSelected()&&!optionHoleSize.isSelected()&&!optionVolCost.isSelected()){
+        			yMin.setBounds((int)graphRegion.getX()-35,(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMin.setText("0"); yMin.show();
+        			yMed.setBounds((int)graphRegion.getX()-35,(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),100,30); yMed.setForeground(Color.white); yMed.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMed.setText(""+(int)(maxN/2)); yMed.show();
+        			yMax.setBounds((int)graphRegion.getX()-35,(int)(graphRegion.getY()-15),100,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMax.setText(""+(int)(maxN)); yMax.show();
         		}else {
         			yMin.setBounds((int)graphRegion.getX()-75,(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
         			yMin.setText("0.00"); yMin.show();
@@ -796,11 +803,11 @@ public class Visualizer {
         		}
         		if(optionTraffic.isSelected()) {
         			tMin.setBounds((int)(graphRegion.getX()+graphRegion.getWidth()+10),(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); tMin.setForeground(Color.white); tMin.setFont(new Font("Dialog",Font.BOLD,24));
-        			tMin.setText("0.00"); tMin.show();
+        			tMin.setText("Low"); tMin.show();
         			tMed.setBounds((int)(graphRegion.getX()+graphRegion.getWidth()+10),(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),100,30); tMed.setForeground(Color.white); tMed.setFont(new Font("Dialog",Font.BOLD,24));
-        			tMed.setText(String.format("%.2f", maxT/2)); tMed.show();
+        			tMed.setText("Med"); tMed.show();
         			tMax.setBounds((int)(graphRegion.getX()+graphRegion.getWidth()+10),(int)(graphRegion.getY()-15),100,30); tMax.setForeground(Color.white); tMax.setFont(new Font("Dialog",Font.BOLD,24));
-        			tMax.setText(String.format("%.2f", maxT)); tMax.show();
+        			tMax.setText("High"); tMax.show();
         			trafficTitle.show();
         		}else {
         			tMin.hide();
