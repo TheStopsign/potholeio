@@ -75,6 +75,13 @@ public class Visualizer {
 	private final ButtonGroup visualTypes = new ButtonGroup();
 	private final ButtonGroup modes = new ButtonGroup();
 	private JLabel roadsImg,minimap;
+	JRadioButton rdbtnMap = new JRadioButton("Map");
+	JRadioButton rdbtnHeatmap = new JRadioButton("Heatmap");
+	JRadioButton rdbtnBarGraph = new JRadioButton("Bar Graph");
+	JRadioButton optionHoleSize = new JRadioButton("Hole Diameter");
+	JRadioButton optionHoleDepth = new JRadioButton("Hole Depth");
+	JCheckBox optionTraffic = new JCheckBox("Traffic Level");
+	JRadioButton optionVolCost = new JRadioButton("Hole Volume/Cost");
 
 	/**
 	 * Launch the application.
@@ -103,15 +110,7 @@ public class Visualizer {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		ArrayList<JRadioButton> chartTypes = new ArrayList<JRadioButton>();
-		ArrayList<JCheckBox> dataTypes = new ArrayList<JCheckBox>();
-		JRadioButton rdbtnMap = new JRadioButton("Map");
-		JRadioButton rdbtnHeatmap = new JRadioButton("Heatmap");
-		JRadioButton rdbtnBarGraph = new JRadioButton("Bar Graph");
-		JCheckBox optionHoleSize = new JCheckBox("Hole Diameter");
-		JCheckBox optionHoleDepth = new JCheckBox("Hole Depth");
-		JCheckBox optionTraffic = new JCheckBox("Traffic Level");
+
 		JButton showSettings = new JButton("M e n u");
 		JButton hideSettings = new JButton("M e n u");
 		
@@ -125,7 +124,7 @@ public class Visualizer {
 		minimap = new JLabel(tmp5);
 		
 		
-		Color bckgndColor = SystemColor.desktop;
+		Color bckgndColor = new Color(27,32,68);
 		
 		//Tabbed Pane graphics fixing
 		UIManager.put("TabbedPane.selected", bckgndColor);
@@ -149,14 +148,14 @@ public class Visualizer {
 		renderContainer.setLayout(null);
 		frmPotholeVisualizer.getContentPane().add(renderContainer);
 		
-		RenderWindow renderWindow = new RenderWindow(chartTypes,dataTypes);
-		renderWindow.setBounds(0, 0, 1920, 1000);
+		RenderWindow renderWindow = new RenderWindow();
+		renderWindow.setBounds(0, 10, 1920, 1000);
 		renderWindow.setBorder(null);
 		renderWindow.setOpaque(false);
 		renderWindow.setLayout(null);
 		
 		JPanel dataToolbar = new JPanel();
-		dataToolbar.setBounds(12, 12, 279, 400);
+		dataToolbar.setBounds(12, 12, 279, 420);
 		dataToolbar.setForeground(Color.WHITE);
 		dataToolbar.setBackground(bckgndColor);
 		dataToolbar.setBorder(new LineBorder(new Color(255, 255, 255), 4));
@@ -175,12 +174,14 @@ public class Visualizer {
 		lblCharts.setForeground(Color.WHITE);
 		lblCharts.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCharts.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblCharts.setBounds(36, 95, 121, 36);
+		lblCharts.setBounds(36, 86, 121, 36);
 		dataToolbar.add(lblCharts);
 		
 		optionHoleSize.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				optionHoleDepth.setSelected(false);
+				optionVolCost.setSelected(false);
 				renderWindow.render();
 			}
 		});
@@ -189,7 +190,6 @@ public class Visualizer {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				renderWindow.render();
-				optionTraffic.hide();
 			}
 		});
 		rdbtnMap.setSelected(true);
@@ -197,7 +197,7 @@ public class Visualizer {
 		rdbtnMap.setBackground(bckgndColor);
 		visualTypes.add(rdbtnMap);
 		rdbtnMap.setFont(new Font("Dialog", Font.BOLD, 16));
-		rdbtnMap.setBounds(36, 135, 144, 23);
+		rdbtnMap.setBounds(36, 126, 144, 23);
 		dataToolbar.add(rdbtnMap);
 		
 		rdbtnHeatmap.addMouseListener(new MouseAdapter() {
@@ -205,17 +205,16 @@ public class Visualizer {
 			public void mouseClicked(MouseEvent e) {
 				roadsImg.show();
 				renderWindow.render();
-				optionTraffic.hide();
 			}
 		});
 		rdbtnHeatmap.setForeground(Color.WHITE);
 		rdbtnHeatmap.setBackground(bckgndColor);
 		visualTypes.add(rdbtnHeatmap);
 		rdbtnHeatmap.setFont(new Font("Dialog", Font.BOLD, 16));
-		rdbtnHeatmap.setBounds(36, 162, 144, 23);
+		rdbtnHeatmap.setBounds(36, 153, 144, 23);
 		dataToolbar.add(rdbtnHeatmap);
 		
-		rdbtnBarGraph.setBounds(36, 189, 144, 23);
+		rdbtnBarGraph.setBounds(36, 180, 144, 23);
 		rdbtnBarGraph.setForeground(Color.white);
 		rdbtnBarGraph.setBackground(bckgndColor);
 		rdbtnBarGraph.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -238,6 +237,8 @@ public class Visualizer {
 		optionHoleDepth.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				optionHoleSize.setSelected(false);
+				optionVolCost.setSelected(false);
 				renderWindow.render();
 			}
 		});
@@ -249,13 +250,13 @@ public class Visualizer {
 		
 		showSettings.setBounds(12, 12, 279, 61);
 		showSettings.setFont(new Font("Dialog", Font.BOLD, 20));
-		showSettings.setForeground(SystemColor.desktop);
+		showSettings.setForeground(bckgndColor);
 		showSettings.setBackground(Color.WHITE);
 		showSettings.setOpaque(true);
 		showSettings.setBorderPainted(false);
 		
 		hideSettings.setFont(new Font("Dialog", Font.BOLD, 20));
-		hideSettings.setForeground(SystemColor.desktop);
+		hideSettings.setForeground(bckgndColor);
 		hideSettings.setBackground(Color.WHITE);
 		hideSettings.setBounds(0, 0, 279, 60);
 		dataToolbar.add(hideSettings);
@@ -271,10 +272,24 @@ public class Visualizer {
 		
 		optionTraffic.setForeground(Color.WHITE);
 		optionTraffic.setFont(new Font("Dialog", Font.BOLD, 16));
-		optionTraffic.setBackground(SystemColor.desktop);
-		optionTraffic.setBounds(36, 334, 144, 23);
+		optionTraffic.setBackground(bckgndColor);
+		optionTraffic.setBounds(36, 361, 144, 23);
 		dataToolbar.add(optionTraffic);
-		optionTraffic.hide();
+		
+		optionVolCost.setForeground(Color.WHITE);
+		optionVolCost.setFont(new Font("Dialog", Font.BOLD, 16));
+		optionVolCost.setBackground(bckgndColor);
+		optionVolCost.setBounds(36, 334, 200, 23);
+		optionVolCost.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				optionHoleSize.setSelected(false);
+				optionHoleDepth.setSelected(false);
+				
+				renderWindow.render();
+			}
+		});
+		dataToolbar.add(optionVolCost);
 		
 		
 		showSettings.addMouseListener(new MouseAdapter() {
@@ -292,69 +307,17 @@ public class Visualizer {
 		navigationWindow.setBackground(bckgndColor);
 		navigationWindow.hide();
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setFont(new Font("Noto Serif CJK JP", Font.BOLD, 14));
-		menuBar.setForeground(SystemColor.desktop);
-		menuBar.setBackground(SystemColor.desktop);
-		frmPotholeVisualizer.setJMenuBar(menuBar);
-		
-		JMenu mnFile = new JMenu("File");
-		mnFile.setFont(new Font("Noto Serif CJK JP", Font.BOLD, 14));
-		mnFile.setBackground(SystemColor.desktop);
-		mnFile.setForeground(Color.WHITE);
-		menuBar.add(mnFile);
-		
-		JMenu mode = new JMenu("Mode");
-		mode.setFont(new Font("Noto Serif CJK JP", Font.BOLD, 14));
-		mode.setForeground(Color.WHITE);
-		mode.setBackground(SystemColor.desktop);
-		menuBar.add(mode);
-		
-		JRadioButton rdbtnDataVisualization = new JRadioButton("Data Visualizer");
-		rdbtnDataVisualization.setSelected(true);
-		rdbtnDataVisualization.setForeground(SystemColor.desktop);
-		rdbtnDataVisualization.setBackground(Color.WHITE);
-		rdbtnDataVisualization.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				renderContainer.show();
-				navigationWindow.hide();
-			}
-		});
-		modes.add(rdbtnDataVisualization);
-		mode.add(rdbtnDataVisualization);
-		
-		JRadioButton rdbtnNavigation = new JRadioButton("Route Planner");
-		rdbtnNavigation.setForeground(SystemColor.desktop);
-		rdbtnNavigation.setBackground(Color.WHITE);
-		rdbtnNavigation.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				renderContainer.hide();
-				navigationWindow.show();
-			}
-		});
-		modes.add(rdbtnNavigation);
-		mode.add(rdbtnNavigation);
-		
-		chartTypes.add(0,rdbtnMap);	chartTypes.add(1,rdbtnHeatmap); chartTypes.add(2,rdbtnBarGraph);
-		dataTypes.add(0,optionHoleSize);	dataTypes.add(1,optionHoleDepth);	dataTypes.add(2,optionTraffic);
-		
-	roadsImg.setFont(new Font("Dialog", Font.BOLD, 24));
-	roadsImg.setBounds(0, 0, 1920, 1000);
-	renderContainer.add(roadsImg);
-		
-//		renderWindow.paintComponent(renderWindow.getGraphics());
+		roadsImg.setFont(new Font("Dialog", Font.BOLD, 24));
+		roadsImg.setBounds(0, 10, 1920, 1000);
+		renderContainer.add(roadsImg);
 	}
 	
 	class RenderWindow extends JPanel {
-		
-		ArrayList<JRadioButton> chartTypes;
-		ArrayList<JCheckBox> dataTypes;
+
 		ArrayList<JButton> hoverables;
 		int edge = 325;
     	int startX = 145,startY = 10;
-        int graphX = 150,graphY = 450,graphWidth = 1200, graphHeight = 500;
+        int graphX = 230,graphY = 450,graphWidth = 1200, graphHeight = 500;
     	double regions[][] = new double[5][4];
         JLabel regionLbls[][] = new JLabel[5][4];
         JLabel yMin = new JLabel();
@@ -362,18 +325,22 @@ public class Visualizer {
         JLabel yMax = new JLabel();
         JLabel chartTitle = new JLabel();
         JPanel minis[][] = new JPanel[5][3];
-        int miniEdge = 140,miniX=1200,miniY=20;
+        int miniEdge = 140,miniX=1200,miniY=10;
         int alpha = 140;
     	Color c0 = new Color(255,255,255,alpha);
     	Color c1 = new Color(255,150,150,alpha);
     	Color c2 = new Color(255,100,100,alpha);
     	Color c3 = new Color(255,0,0,alpha);
     	double[] barContents = new double[15];
+    	double[] regionCount = new double[15];
+    	double[] regionTraffic = new double[15];
     	JPanel barHovers[] = new JPanel[15];
+    	JLabel tMin = new JLabel();
+    	JLabel tMed = new JLabel();
+    	JLabel tMax = new JLabel();
+    	JLabel trafficTitle = new JLabel("Average Traffic Level");
 		
-		public RenderWindow(ArrayList<JRadioButton> chartTypes,ArrayList<JCheckBox> dataTypes) {
-			this.chartTypes = chartTypes;
-			this.dataTypes = dataTypes;
+		public RenderWindow() {
 			int[] xCoord = new int[50];
 			int[] yCoord = new int[50];
 			float[] diameter = new float[50];
@@ -401,12 +368,13 @@ public class Visualizer {
 				e1.printStackTrace();
 			}
 			setBackground(Color.WHITE);
-			repaint();
 			for(Hole h : holes) {
 				this.add(h.hoverable);
 				this.add(h.tt_id);
 				this.add(h.tt_diam);
 				this.add(h.tt_depth);
+				this.add(h.tt_volume);
+				this.add(h.tt_cost);
 				int x=-1,y=-1;
 				if(h.getX()<startX+(edge*1)) {
         			x = 0;
@@ -426,7 +394,9 @@ public class Visualizer {
         		}else if(h.getY()<startY+(edge*3)) {
         			y = 2;
         		}
-        		h.region = h.region+((char)(65+y))+(x+1);
+        		h.region = (5*y)+x;
+        		regionCount[(5*y)+x]++;
+        		regionTraffic[(5*y)+x]+=h.getTraffic();
 			}
 			
 			for(int i=0;i<5;i++) {
@@ -466,7 +436,7 @@ public class Visualizer {
 	    				@Override
 	    				public void mouseExited(MouseEvent e) {
 		        			temp.setBackground(c2);
-		        			temp2.setBackground(new Color(255,0,0,255));
+		        			temp2.setBackground(new Color(255,0,0,0));
 	    				}
 	    			});
 	    			temp2.addMouseListener(new MouseAdapter() {
@@ -480,7 +450,7 @@ public class Visualizer {
 	    				@Override
 	    				public void mouseExited(MouseEvent e) {
 	    					temp.setBackground(c2);
-	            			temp2.setBackground(new Color(255,0,0,255));
+	            			temp2.setBackground(new Color(255,0,0,0));
 	    				}
 	    			});
 	    			minis[i][j] = temp;
@@ -491,9 +461,17 @@ public class Visualizer {
 	    			barHovers[(5*j)+i].hide();
 	    		}
     		}
+			this.add(tMin);
+    		this.add(tMed);
+    		this.add(tMax);
+    		trafficTitle.setForeground(Color.white);
+    		trafficTitle.setFont(new Font("Dialog",Font.BOLD,24));
+    		trafficTitle.setBounds(1525, 535, 300, 80);
+    		this.add(trafficTitle);
 			minimap.setBounds(miniX-100, miniY-240, 900	, 900);
 			this.add(minimap);
 			minimap.hide();
+			repaint();
 		}
 		
 		public void render() {
@@ -525,14 +503,17 @@ public class Visualizer {
 	        super.paintComponent(g);
 	        Graphics2D g2 = (Graphics2D) g;
 	        g2.setColor(Color.red);
-	        chartTitle.hide();
-	        if(chartTypes.get(0).isSelected()) {
+	        chartTitle.hide(); trafficTitle.hide();
+	        if(rdbtnMap.isSelected()) {
 	        	for(int i=0;i<5;i++) {
 	        		for(int j=0;j<3;j++)
 		        		regionLbls[i][j].hide();
 	        	}
+	        	optionTraffic.hide();
+	        }else {
+	        	optionTraffic.show();
 	        }
-	        if(chartTypes.get(1).isSelected()) {
+	        if(rdbtnHeatmap.isSelected()) {
 	        	for(int i=0;i<5;i++) {
 	        		for(int j=0;j<3;j++) {
 		        		regions[i][j]=0;
@@ -559,62 +540,44 @@ public class Visualizer {
 	        			y = 2;
 	        		}
 	        		
-	        		if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected())
+	        		if(optionVolCost.isSelected())
         				regions[x][y]+=hole.getDiameter()*hole.getDepth();
-        			else if(dataTypes.get(0).isSelected())
+        			else if(optionHoleSize.isSelected())
         				regions[x][y]+=hole.getDiameter();
-        			else if(dataTypes.get(1).isSelected())
+        			else if(optionHoleDepth.isSelected())
         				regions[x][y]+=hole.getDepth();
         			else
 	        			regions[x][y]++;
+	        		//TODO
+	        		if(optionTraffic.isSelected()) {
+	        			regions[x][y]*=(hole.getTraffic()/3);
+	        		}
 	        	}
+	        	double maxes[] = new double[3];
 	        	for(int i=0;i<5;i++) {
 	        		for(int j=0;j<3;j++) {
-	        			if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
-	        				if(regions[i][j]<=0.05) {
-		        				g2.setColor(c0);
-		        			}else if(regions[i][j]<=0.15) {
-		        				g2.setColor(c1);
-		        			}else if(regions[i][j]<=0.25) {
-		        				g2.setColor(c2);
-		        			}else{
-		        				g2.setColor(c3);
-		        			}
-			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
-	        			}else if(dataTypes.get(0).isSelected()) {
-		        			if(regions[i][j]<=1) {
-		        				g2.setColor(c0);
-		        			}else if(regions[i][j]<=2) {
-		        				g2.setColor(c1);
-		        			}else if(regions[i][j]<=3) {
-		        				g2.setColor(c2);
-		        			}else{
-		        				g2.setColor(c3);
-		        			}
-			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
-	        			}else if(dataTypes.get(1).isSelected()) {
-	        				if(regions[i][j]<=0.15) {
-		        				g2.setColor(c0);
-		        			}else if(regions[i][j]<=0.3) {
-		        				g2.setColor(c1);
-		        			}else if(regions[i][j]<=0.4) {
-		        				g2.setColor(c2);
-		        			}else{
-		        				g2.setColor(c3);
-		        			}
-			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
+	        			if(optionVolCost.isSelected()) {
+	        				maxes[0] = 0.05; maxes[1] = 0.15; maxes[2] = 0.25;
+	        			}else if(optionHoleSize.isSelected()) {
+	        				maxes[0] = 1; maxes[1] = 2; maxes[2] = 3;
+	        			}else if(optionHoleDepth.isSelected()) {
+	        				maxes[0] = 0.15; maxes[1] = 0.3; maxes[2] = 0.4;
 	        			}else{
-		        			if(regions[i][j]<=1) {
-		        				g2.setColor(c0);
-		        			}else if(regions[i][j]<=2) {
-		        				g2.setColor(c1);
-		        			}else if(regions[i][j]<=4) {
-		        				g2.setColor(c2);
-		        			}else{
-		        				g2.setColor(c3);
-		        			}
-			        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
+	        				maxes[0] = 1; maxes[1] = 2; maxes[2] = 4;
 	        			}
+	        			if(optionTraffic.isSelected()) {
+	        				maxes[0] /= 5; maxes[1] /= 5; maxes[2] /= 4;
+	        			}
+	        			if(regions[i][j]<=maxes[0]) {
+	        				g2.setColor(c0);
+	        			}else if(regions[i][j]<=maxes[1]) {
+	        				g2.setColor(c1);
+	        			}else if(regions[i][j]<=maxes[2]) {
+	        				g2.setColor(c2);
+	        			}else{
+	        				g2.setColor(c3);
+	        			}
+		        		g2.fillRect(startX+(edge*i), startY+(edge*j), edge, edge);
 	        			regionLbls[i][j].setBounds(startX+(edge*(i+1))-(edge*3/4), startY+(edge*(j+1))-(edge*3/4), edge/2, edge/2);
 	        			regionLbls[i][j].show();
         				g2.setColor(Color.white);
@@ -625,12 +588,13 @@ public class Visualizer {
 	        		}
 	        	}
 	        }
-	        if(chartTypes.get(0).isSelected()||chartTypes.get(1).isSelected()) {
+	        if(rdbtnMap.isSelected()||rdbtnHeatmap.isSelected()) {
 	        	roadsImg.show();minimap.hide();
 	        	yMin.hide(); yMed.hide(); yMax.hide();
+	        	tMin.hide();tMed.hide();tMax.hide();
 	        	for (Hole hole : holes) { // Draw points
 	        		hole.hoverable.show();
-		        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
+		        	if(optionVolCost.isSelected()) {
 		        		if(hole.getDepth()<0.05) {
 		        			g2.setColor(new Color(255,170,170));
 		        		}else if(hole.getDepth()<0.1) {
@@ -641,10 +605,10 @@ public class Visualizer {
 		        			g2.setColor(new Color(170,0,0));
 		        		}
 		        		hole.setPixelDiameter((int)(20*hole.getDiameter())+4);
-		        	}else if(dataTypes.get(0).isSelected()) {
+		        	}else if(optionHoleSize.isSelected()) {
 		        		g2.setColor(new Color(255,0,0));
 		        		hole.setPixelDiameter((int)(20*hole.getDiameter())+4);
-		        	}else if(dataTypes.get(1).isSelected()) {
+		        	}else if(optionHoleDepth.isSelected()) {
 		        		if(hole.getDepth()<0.05) {
 		        			g2.setColor(new Color(255,170,170));
 		        		}else if(hole.getDepth()<0.1) {
@@ -672,7 +636,7 @@ public class Visualizer {
 	        		h.hoverable.hide();
 	        	}
 	        }
-	        if(chartTypes.get(2).isSelected()) {
+	        if(rdbtnBarGraph.isSelected()) {
 	        	minimap.show();
 	        	
 	        	Rectangle graphRegion = new Rectangle(graphX, graphY,graphWidth,graphHeight);
@@ -686,228 +650,125 @@ public class Visualizer {
         				(int)(graphRegion.getX()+(barWidth*15)),(int)(graphRegion.getY()+graphRegion.getHeight()));
 	        	for(int i=0;i<15;i++) {
 	        		barContents[i] = 0;
+	        		regionTraffic[i] = 0;
 	        	}
-	        	if(dataTypes.get(0).isSelected() && dataTypes.get(1).isSelected()) {
+	        	if(optionVolCost.isSelected()) {
                     // pothole size and depth
-                    chartTitle.setText("Pothole Volume");
+                    chartTitle.setText("Pothole Volume(m^3) and Cost($)");
 	        		for(Hole h : holes) {
-	        			switch(h.region) {
-	        			case "A1":
-	        				barContents[0]+=h.getDiameter();
-	        				break;
-	        			case "A2":
-	        				barContents[1]+=h.getDiameter();
-	        				break;
-	        			case "A3":
-	        				barContents[2]+=h.getDiameter();
-	        				break;
-	        			case "A4":
-	        				barContents[3]+=h.getDiameter();
-	        				break;
-	        			case "A5":
-	        				barContents[4]+=h.getDiameter();
-	        				break;
-	        			case "B1":
-	        				barContents[5]+=h.getDiameter();
-	        				break;
-	        			case "B2":
-	        				barContents[6]+=h.getDiameter();
-	        				break;
-	        			case "B3":
-	        				barContents[7]+=h.getDiameter();
-	        				break;
-	        			case "B4":
-	        				barContents[8]+=h.getDiameter();
-	        				break;
-	        			case "B5":
-	        				barContents[9]+=h.getDiameter();
-	        				break;
-	        			case "C1":
-	        				barContents[10]+=h.getDiameter();
-	        				break;
-	        			case "C2":
-	        				barContents[11]+=h.getDiameter();
-	        				break;
-	        			case "C3":
-	        				barContents[12]+=h.getDiameter();
-	        				break;
-	        			case "C4":
-	        				barContents[13]+=h.getDiameter();
-	        				break;
-	        			case "C5":
-	        				barContents[14]+=h.getDiameter();
-	        				break;
+	        			for(int i=0;i<15;i++) {
+	        				if(i==h.region)
+	        					barContents[i]+=h.getDiameter();
 	        			}
 	        		}
-	        	}else if(dataTypes.get(0).isSelected()) {
-                    chartTitle.setText("Pothole Size");
+	        	}else if(optionHoleSize.isSelected()) {
+                    chartTitle.setText("Pothole Diameter(m)");
 	        		for(Hole h : holes) {
-	        			switch(h.region) {
-	        			case "A1":
-	        				barContents[0]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "A2":
-	        				barContents[1]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "A3":
-	        				barContents[2]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "A4":
-	        				barContents[3]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "A5":
-	        				barContents[4]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "B1":
-	        				barContents[5]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "B2":
-	        				barContents[6]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "B3":
-	        				barContents[7]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "B4":
-	        				barContents[8]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "B5":
-	        				barContents[9]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "C1":
-	        				barContents[10]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "C2":
-	        				barContents[11]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "C3":
-	        				barContents[12]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "C4":
-	        				barContents[13]+=h.getDiameter()*h.getDepth();
-	        				break;
-	        			case "C5":
-	        				barContents[14]+=h.getDiameter()*h.getDepth();
-	        				break;
+	        			for(int i=0;i<15;i++) {
+	        				if(i==h.region)
+	        					barContents[i]+=h.getDiameter()*h.getDepth();
 	        			}
 	        		}
-	        	}else if(dataTypes.get(1).isSelected()) {
-                    chartTitle.setText("Pothole Depth");
+	        	}else if(optionHoleDepth.isSelected()) {
+                    chartTitle.setText("Pothole Depth(m)");
 	        		for(Hole h : holes) {
-	        			switch(h.region) {
-	        			case "A1":
-	        				barContents[0]+=h.getDepth();
-	        				break;
-	        			case "A2":
-	        				barContents[1]+=h.getDepth();
-	        				break;
-	        			case "A3":
-	        				barContents[2]+=h.getDepth();
-	        				break;
-	        			case "A4":
-	        				barContents[3]+=h.getDepth();
-	        				break;
-	        			case "A5":
-	        				barContents[4]+=h.getDepth();
-	        				break;
-	        			case "B1":
-	        				barContents[5]+=h.getDepth();
-	        				break;
-	        			case "B2":
-	        				barContents[6]+=h.getDepth();
-	        				break;
-	        			case "B3":
-	        				barContents[7]+=h.getDepth();
-	        				break;
-	        			case "B4":
-	        				barContents[8]+=h.getDepth();
-	        				break;
-	        			case "B5":
-	        				barContents[9]+=h.getDepth();
-	        				break;
-	        			case "C1":
-	        				barContents[10]+=h.getDepth();
-	        				break;
-	        			case "C2":
-	        				barContents[11]+=h.getDepth();
-	        				break;
-	        			case "C3":
-	        				barContents[12]+=h.getDepth();
-	        				break;
-	        			case "C4":
-	        				barContents[13]+=h.getDepth();
-	        				break;
-	        			case "C5":
-	        				barContents[14]+=h.getDepth();
-	        				break;
+	        			for(int i=0;i<15;i++) {
+	        				if(i==h.region)
+	        					barContents[i]+=h.getDepth();
 	        			}
 	        		}
 	        	}else{
                     chartTitle.setText("Pothole Count");
 	        		for(Hole h : holes) {
-	        			switch(h.region) {
-	        			case "A1":
-	        				barContents[0]++;
-	        				break;
-	        			case "A2":
-	        				barContents[1]++;
-	        				break;
-	        			case "A3":
-	        				barContents[2]++;
-	        				break;
-	        			case "A4":
-	        				barContents[3]++;
-	        				break;
-	        			case "A5":
-	        				barContents[4]++;
-	        				break;
-	        			case "B1":
-	        				barContents[5]++;
-	        				break;
-	        			case "B2":
-	        				barContents[6]++;
-	        				break;
-	        			case "B3":
-	        				barContents[7]++;
-	        				break;
-	        			case "B4":
-	        				barContents[8]++;
-	        				break;
-	        			case "B5":
-	        				barContents[9]++;
-	        				break;
-	        			case "C1":
-	        				barContents[10]++;
-	        				break;
-	        			case "C2":
-	        				barContents[11]++;
-	        				break;
-	        			case "C3":
-	        				barContents[12]++;
-	        				break;
-	        			case "C4":
-	        				barContents[13]++;
-	        				break;
-	        			case "C5":
-	        				barContents[14]++;
-	        				break;
+	        			for(int i=0;i<15;i++) {
+	        				if(i==h.region)
+	        					barContents[i]++;
 	        			}
 	        		}
 	        	}
+	        	//TODO
+	        	if(optionTraffic.isSelected()) {
+	        		for(Hole h : holes) {
+	        			for(int i=0;i<15;i++) {
+	        				if(i==h.region) {
+	        					regionTraffic[i]+=h.getTraffic();
+	        					break;
+	        				}
+	        			}
+	        		}
+	        		g2.setColor(Color.white);
+	        		g2.drawLine((int)(graphRegion.getX()+graphRegion.getWidth()), (int)graphRegion.getY(),
+	        				(int)(graphRegion.getX()+graphRegion.getWidth()), (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        	}
+	        	for(int i=0;i<15;i++) {
+	        		regionTraffic[i] /= regionCount[i];
+	        	}
+	        	int buffer = 10;
 	        	double maxN = getMaxValue(barContents);
+	        	double maxT = getMaxValue(regionTraffic);
         		for(int n=0;n<barContents.length;n++) {
         			int h = (int)(graphRegion.getHeight()*(barContents[n]/maxN));
-        			//draw bars
-        			g2.setColor(Color.red);
-        			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
-        			barHovers[n].setBounds((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+1+graphRegion.getHeight()-h), barWidth-1, h-1);
-        			//top,left,right borders
-        			g2.setColor(Color.white);
-        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
-        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h));
-        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
-        					(int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()));
-        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h),
-        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()));
+        			int t = (int)(graphRegion.getHeight()*(regionTraffic[n]/maxT));
+        			
+        			if(optionTraffic.isSelected() && h<t) {
+        				g2.setColor(Color.blue);
+        				g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-t), barWidth, t);
+	        			
+        				barHovers[n].setBounds((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+1+graphRegion.getHeight()-t), barWidth-1, t-1);
+        				
+	        			g2.setColor(Color.red);
+	        			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth-(2*buffer), h);
+	
+	        			g2.setColor(Color.white);
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-t),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-t));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n+buffer), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth-buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-h));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-t),
+	        					(int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-t),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth-buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth-buffer, (int)(graphRegion.getY()+graphRegion.getHeight()));
+        			}else if(optionTraffic.isSelected()) {
+        				
+	        			g2.setColor(Color.red);
+	        			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
+
+	        			g2.setColor(Color.blue);
+        				g2.fillRect((int)graphRegion.getX()+1+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-t), barWidth-(2*buffer), t);
+        				
+        				barHovers[n].setBounds((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+1+graphRegion.getHeight()-h), barWidth-1, h-1);
+	        			
+	        			g2.setColor(Color.white);
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-t),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth-buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-t));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-t),
+	        					(int)graphRegion.getX()+(barWidth*n)+buffer, (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth-buffer, (int)(graphRegion.getY()+graphRegion.getHeight()-t),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth-buffer, (int)(graphRegion.getY()+graphRegion.getHeight()));
+        			}else {
+        				g2.setColor(Color.red);
+	        			g2.fillRect((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h), barWidth, h);
+        				
+        				barHovers[n].setBounds((int)graphRegion.getX()+1+(barWidth*n), (int)(graphRegion.getY()+1+graphRegion.getHeight()-h), barWidth-1, h-1);
+	        			
+	        			g2.setColor(Color.white);
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n), (int)(graphRegion.getY()+graphRegion.getHeight()));
+	        			g2.drawLine((int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()-h),
+	        					(int)graphRegion.getX()+(barWidth*n)+barWidth, (int)(graphRegion.getY()+graphRegion.getHeight()));
+        			}
         		}
         		for(int i=0;i<5;i++) {
             		for(int j=0;j<3;j++) {
@@ -918,13 +779,35 @@ public class Visualizer {
             			barHovers[(5*j)+i].show();
             		}
         		}
-    			yMin.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
-    			yMin.setText("0.00 m"); yMin.show();
-    			yMed.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),100,30); yMed.setForeground(Color.white); yMed.setFont(new Font("Dialog",Font.BOLD,24));
-    			yMed.setText(String.format("%.2f m", maxN/2)); yMed.show();
-    			yMax.setBounds((int)graphRegion.getX()-100,(int)(graphRegion.getY()-15),100,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
-    			yMax.setText(String.format("%.2f m", maxN)); yMax.show();
-    			chartTitle.setBounds(500, 300, 500, 50); // center title
+        		if(optionVolCost.isSelected()) {
+        			yMin.setBounds((int)graphRegion.getX()-75,(int)(graphRegion.getY()+graphRegion.getHeight()-15),300,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMin.setText("0.00"); yMin.show();
+        			yMed.setBounds((int)graphRegion.getX()-175,(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),300,30); yMed.setForeground(Color.white); yMed.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMed.setText(String.format("%.2f|%.2f", maxN/2,(50*((maxN/2)/0.179)))); yMed.show();
+        			yMax.setBounds((int)graphRegion.getX()-195,(int)(graphRegion.getY()-15),300,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMax.setText(String.format("%.2f|%.2f", maxN,(50*((maxN)/0.179)))); yMax.show();
+        		}else {
+        			yMin.setBounds((int)graphRegion.getX()-75,(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); yMin.setForeground(Color.white); yMin.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMin.setText("0.00"); yMin.show();
+        			yMed.setBounds((int)graphRegion.getX()-75,(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),100,30); yMed.setForeground(Color.white); yMed.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMed.setText(String.format("%.2f", maxN/2)); yMed.show();
+        			yMax.setBounds((int)graphRegion.getX()-75,(int)(graphRegion.getY()-15),100,30); yMax.setForeground(Color.white); yMax.setFont(new Font("Dialog",Font.BOLD,24));
+        			yMax.setText(String.format("%.2f", maxN)); yMax.show();
+        		}
+        		if(optionTraffic.isSelected()) {
+        			tMin.setBounds((int)(graphRegion.getX()+graphRegion.getWidth()+10),(int)(graphRegion.getY()+graphRegion.getHeight()-15),100,30); tMin.setForeground(Color.white); tMin.setFont(new Font("Dialog",Font.BOLD,24));
+        			tMin.setText("0.00"); tMin.show();
+        			tMed.setBounds((int)(graphRegion.getX()+graphRegion.getWidth()+10),(int)(graphRegion.getY()+(graphRegion.getHeight()/2)-15),100,30); tMed.setForeground(Color.white); tMed.setFont(new Font("Dialog",Font.BOLD,24));
+        			tMed.setText(String.format("%.2f", maxT/2)); tMed.show();
+        			tMax.setBounds((int)(graphRegion.getX()+graphRegion.getWidth()+10),(int)(graphRegion.getY()-15),100,30); tMax.setForeground(Color.white); tMax.setFont(new Font("Dialog",Font.BOLD,24));
+        			tMax.setText(String.format("%.2f", maxT)); tMax.show();
+        			trafficTitle.show();
+        		}else {
+        			tMin.hide();
+        			tMed.hide();
+        			tMax.hide();
+        		}
+    			chartTitle.setBounds(250, 300, 1000, 50); // center title
     			chartTitle.setForeground(Color.white);
     			chartTitle.setHorizontalAlignment(0);
     			chartTitle.setFont(new Font("Dialog", Font.BOLD, 36));

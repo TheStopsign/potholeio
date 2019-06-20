@@ -1,0 +1,19 @@
+Instructions:
+	- Inform the users:
+		+ We will give them three tasks to complete
+		+ They will use the 'think-aloud protocol'
+		+ We cannot help them
+		+ We are not testing them, but the program itself
+		+ They may quit at any time
+		+ Information will not be published
+	----------------------------------------------------------------------------
+	- Observe and take notes
+	----------------------------------------------------------------------------
+	- After completion
+		+ Ask them questions
+		+ Discuss the program
+		+ Complete the written survey
+			* Demographics
+			* Background/Experiences
+			* Fill-in questions
+			* Scale questions
